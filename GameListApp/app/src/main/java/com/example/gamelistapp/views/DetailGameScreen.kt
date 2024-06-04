@@ -73,7 +73,7 @@ fun DetailGameBodyScreen(paddingValues: PaddingValues, viewModel: GamesViewModel
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
