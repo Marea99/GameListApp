@@ -17,12 +17,8 @@ import com.example.gamelistapp.ui.theme.GameListAppTheme
 import com.example.gamelistapp.viewModel.GamesViewModel
 import com.example.gamelistapp.views.DetailGameScreen
 import com.example.gamelistapp.views.HomeScreen
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel: GamesViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,7 +28,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavManager(viewModel)
+                    val viewModel: GamesViewModel by viewModels()
+                    val navController = rememberNavController()
+                    HomeScreen(navController, viewModel)
+                    //NavManager()
                 }
             }
         }
