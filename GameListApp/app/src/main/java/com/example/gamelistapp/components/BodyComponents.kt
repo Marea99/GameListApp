@@ -1,5 +1,6 @@
 package com.example.gamelistapp.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,7 +41,7 @@ fun MetascoreCard(score: Int, modifier: Modifier = Modifier) {
             containerColor = if (score >= 70) Color(0xFF348838)
                              else if (score >= 50) Color(0xFFC79600)
                              else Color(0xFFC52418),
-            contentColor = Color.White
+            contentColor = Color.White,
         )
     ) {
         Column(
@@ -60,11 +61,12 @@ fun MetascoreCard(score: Int, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GameCardListItem(imgUrl: String, title: String) {
+fun GameCardListItem(imgUrl: String, title: String, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { onClick() },
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {

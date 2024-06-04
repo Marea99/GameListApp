@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.gamelistapp.components.GameCardListItem
 import com.example.gamelistapp.components.MetascoreCard
+import com.example.gamelistapp.navigation.Routes
 import com.example.gamelistapp.viewModel.GamesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,7 +37,7 @@ fun HomeScreen(navController: NavController, viewModel: GamesViewModel) {
                 ),
                 title = { Text(text = "GAME LIST APP") },
                 actions = {
-                    IconButton(onClick = { /*TODO: go to search*/ }) {
+                    IconButton(onClick = { navController.navigate(Routes.SearchGameScreen.route) }) {
                         Icon(
                             imageVector = Icons.Rounded.Search,
                             contentDescription = "Search"
@@ -56,8 +57,18 @@ fun HomeBodyScreen(paddingValues: PaddingValues,navController: NavController, vi
     Column(
         modifier = Modifier.padding(paddingValues)
     ) {
-        MetascoreCard(score = 65, Modifier.padding(8.dp))
-        GameCardListItem("https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg", "The Witcher 3: Wild Hunt")
-        GameCardListItem("https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg", "God of War (2018)" )
+        //MetascoreCard(score = 65, Modifier.padding(8.dp))
+        GameCardListItem(
+            "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+            "The Witcher 3: Wild Hunt"
+        ) {
+            navController.navigate(Routes.DetailGameScreen.route)
+        }
+        GameCardListItem(
+            "https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg",
+            "God of War (2018)"
+        ) {
+            navController.navigate(Routes.DetailGameScreen.route)
+        }
     }
 }
