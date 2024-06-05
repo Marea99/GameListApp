@@ -2,9 +2,9 @@ package com.example.gamelistapp.state
 
 data class GameAppState(
     val name: String = "",
-    val description: String = "",
+    val description_raw: String = "",
     val metacritic: Int = 0,
     val released: String = "",
-    val backgroundImage: String = "",
+    val background_image: String = "",
     val website: String = ""
 )
