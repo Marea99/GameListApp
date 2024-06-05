@@ -58,6 +58,24 @@ fun HomeBodyScreen(paddingValues: PaddingValues,navController: NavController, vi
     LazyColumn(
         modifier = Modifier.padding(paddingValues)
     ) {
+        /* TODO: get list from API */
+        item {
+            GameCardListItem(
+                "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+                "The Witcher 3: Wild Hunt"
+            ) {
+                navController.navigate(Routes.DetailGameScreen.route)
+            }
+        }
+        item {
+            GameCardListItem(
+                "https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg",
+                "God of War (2018)"
+            ) {
+                navController.navigate(Routes.DetailGameScreen.route)
+            }
+        }
+
         item {
             GameCardListItem(
                 "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
