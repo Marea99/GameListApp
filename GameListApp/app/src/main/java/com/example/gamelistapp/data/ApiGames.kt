@@ -8,9 +8,10 @@ import com.example.gamelistapp.model.SingleGameModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import javax.inject.Inject
 
 
-interface ApiGames{
+interface ApiGames  {
     @GET(GAMES + KEY)
     suspend fun getAllGames(): Response<GamesListModel>
 

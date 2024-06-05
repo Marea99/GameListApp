@@ -1,11 +1,11 @@
 package com.example.gamelistapp.repository
 
 import com.example.gamelistapp.data.ApiGames
-import com.example.gamelistapp.model.GamesListModel
 import com.example.gamelistapp.model.SingleGameDetailModel
 import com.example.gamelistapp.model.SingleGameModel
+import javax.inject.Inject
 
-class GameRepository (val apiGames: ApiGames) {
+class GameRepository @Inject constructor(private val apiGames: ApiGames) {
 
     suspend fun getAllGames(): List<SingleGameModel>? {
         val response = apiGames.getAllGames()

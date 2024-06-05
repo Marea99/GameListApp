@@ -17,7 +17,9 @@ import com.example.gamelistapp.ui.theme.GameListAppTheme
 import com.example.gamelistapp.viewModel.GamesViewModel
 import com.example.gamelistapp.views.DetailGameScreen
 import com.example.gamelistapp.views.HomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: GamesViewModel by viewModels()
 

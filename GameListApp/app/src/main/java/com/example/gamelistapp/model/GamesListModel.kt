@@ -1,7 +1,9 @@
 package com.example.gamelistapp.model
 
+import com.google.gson.annotations.SerializedName
+
 data class GamesListModel(
-    val count: Int,
+    @SerializedName("count") val count: Int,
     val results: List<SingleGameModel>
 )
 /*
