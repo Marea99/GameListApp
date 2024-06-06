@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GamesListModel(
     @SerializedName("count") val count: Int,
+    val next: String,
     val results: List<SingleGameModel>
 )
 /*

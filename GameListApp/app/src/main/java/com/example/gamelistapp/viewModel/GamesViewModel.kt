@@ -1,8 +1,10 @@
 package com.example.gamelistapp.viewModel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gamelistapp.model.SingleGameModel
@@ -18,16 +20,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GamesViewModel @Inject constructor(private  val repository: GameRepository): ViewModel() {
-    private val _allGames = MutableStateFlow<List<SingleGameModel>>(emptyList())
+    private val _allGames = MutableStateFlow(emptyList<SingleGameModel>().toMutableList())
+    //private val _allGames = MutableStateFlow<List<SingleGameModel>>(emptyList<SingleGameModel>())
     val allGames = _allGames.asStateFlow()
     var gameState by mutableStateOf(GameAppState())
         private set
 
+    private val _idGame = MutableStateFlow(0)
+    val idGame = _idGame
+
+    fun setIdGame(id: Int) {
+        _idGame.value = id
+    }
+
+    private var nextPage = ""
+
     fun getAllGames() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val list = repository.getAllGames()
-                _allGames.value = list!!
+                val list = repository.getAllGames()?.results
+                _allGames.value = (list as MutableList<SingleGameModel>?)!!
+                //_allGames.value = list!!
+                nextPage = repository.getAllGames()?.next.toString()
             }
         }
     }
@@ -60,6 +74,22 @@ class GamesViewModel @Inject constructor(private  val repository: GameRepository
                     background_image = list?.background_image ?: "",
                     website = list?.website ?: ""
                 )
+            }
+        }
+    }
+
+    fun getMoreGames() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                Log.i("NEXT_PAGE", nextPage)
+                val list = repository.getNextPage(nextPage)?.results
+                Log.i("RESULTS", list.toString())
+                list?.forEach {  item ->
+                    _allGames.value.add(item)
+                }
+                //_allGames.value.addAll(list!!)
+                //_allGames.value = list!!
+                nextPage = repository.getAllGames()?.next.toString()
             }
         }
     }

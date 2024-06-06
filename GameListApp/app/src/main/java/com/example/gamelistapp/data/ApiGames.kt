@@ -20,4 +20,7 @@ interface ApiGames  {
 
     @GET("$GAMES/{name}$KEY")
     suspend fun getGameByName(@Path(value = "name")id: String): Response<SingleGameDetailModel>
+
+    @GET("{url}")
+    suspend fun getNextPage(@Path(value = "url")url: String): Response<GamesListModel>
 }
