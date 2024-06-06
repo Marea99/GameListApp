@@ -69,14 +69,13 @@ fun HomeBodyScreen(paddingValues: PaddingValues,navController: NavController, vi
     LazyColumn(
         modifier = Modifier.padding(paddingValues)
     ) {
-        /* TODO: get list from API */
         items(allGames) { item ->
             GameCardListItem(imgUrl = item.background_image, title = item.name) {
                 viewModel.setIdGame(item.id)
                 navController.navigate(Routes.DetailGameScreen.route)
             }
         }
-
+        /*
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -89,6 +88,6 @@ fun HomeBodyScreen(paddingValues: PaddingValues,navController: NavController, vi
                 }
             }
         }
-
+        */
     }
 }
